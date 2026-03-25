@@ -14,9 +14,9 @@
         .card:hover { border-color: #ff0013; }
         h1, h2 { letter-spacing: -0.025em; }
         
-        /* Custom scrollbar for news */
-        #news-feed::-webkit-scrollbar { width: 4px; }
-        #news-feed::-webkit-scrollbar-thumb { background: #ff0013; border-radius: 10px; }
+        #news-feed::-webkit-scrollbar { width: 3px; }
+        #news-feed::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        #news-feed::-webkit-scrollbar-thumb:hover { background: #ff0013; }
     </style>
 </head>
 <body class="leading-snug text-sm">
@@ -32,67 +32,67 @@
     </nav>
 
     <main class="max-w-6xl mx-auto px-6 py-4">
-        <header class="text-center mb-6">
+        <header class="text-center mb-4">
             <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Power TRON. <span class="text-red-600">Earn Rewards.</span></h1>
-            <div class="bg-red-600/10 border border-red-600/40 p-2 rounded inline-block">
-                <p class="text-xs font-mono text-red-400">SR: TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</p>
+            <div class="bg-red-600/10 border border-red-600/40 p-1 px-3 rounded inline-block">
+                <p class="text-[10px] font-mono text-red-400 uppercase tracking-tighter">SR: TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</p>
             </div>
         </header>
 
-        <!-- BITCOIN MARKET TERMINAL INTEGRATION -->
-        <section class="card rounded-xl border-red-600/30 overflow-hidden mb-6">
-            <div class="bg-zinc-900/80 p-4 border-b border-zinc-800 flex justify-between items-center">
-                <h2 class="text-sm font-black uppercase tracking-widest text-red-500 flex items-center gap-2">
-                    <i class="fab fa-bitcoin"></i> Bitcoin Market Intelligence (CAD)
-                </h2>
-                <div class="flex items-center gap-2 text-[10px] text-zinc-500 font-bold uppercase">
-                    <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span> Live Network Data
+        <section class="card rounded-lg border-red-600/20 overflow-hidden mb-6 shadow-2xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-800 border-b border-zinc-800 bg-zinc-900/50">
+                <div class="p-2 px-4 flex items-center justify-between">
+                    <span class="text-[9px] text-zinc-500 font-black uppercase">BTC/CAD</span>
+                    <div class="text-right">
+                        <span id="ui-price" class="text-sm font-bold font-mono">---</span>
+                        <span id="ui-change" class="text-[9px] block leading-none font-bold">---</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-800 border-b border-zinc-800">
-                <div class="p-4">
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Price CAD</p>
-                    <p id="ui-price" class="text-xl font-bold font-mono text-white">---</p>
-                    <p id="ui-change" class="text-[10px] font-bold">---</p>
+                <div class="p-2 px-4 flex items-center justify-between">
+                    <span class="text-[9px] text-zinc-500 font-black uppercase">Hashrate</span>
+                    <span id="ui-hashrate" class="text-sm font-bold font-mono">---</span>
                 </div>
-                <div class="p-4">
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Hashrate</p>
-                    <p id="ui-hashrate" class="text-xl font-bold font-mono text-white">---</p>
+                <div class="p-2 px-4 flex items-center justify-between">
+                    <span class="text-[9px] text-zinc-500 font-black uppercase">Next Halving</span>
+                    <span id="ui-halving" class="text-sm font-bold font-mono text-red-500">---</span>
                 </div>
-                <div class="p-4">
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">24h Txns</p>
-                    <p id="ui-tx" class="text-xl font-bold font-mono text-white">---</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Supply</p>
-                    <p id="ui-supply" class="text-lg font-bold font-mono text-white">---</p>
+                <div class="p-2 px-4 flex items-center justify-between">
+                    <span class="text-[9px] text-zinc-500 font-black uppercase">Supply</span>
+                    <span id="ui-supply" class="text-sm font-bold font-mono">---</span>
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-zinc-800">
-                <div class="lg:col-span-2 p-4">
-                    <h3 class="text-[10px] text-red-500 uppercase font-bold mb-4 tracking-tighter">Latest from Cointelegraph</h3>
-                    <div id="news-feed" class="space-y-3 max-h-[300px] overflow-y-auto pr-2">
-                        <div class="text-zinc-600 italic">Connecting to feed...</div>
+            <!-- News height adjusted to 240px to fit 5+ headlines easily -->
+            <div class="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-zinc-800 h-[240px]">
+                <div class="lg:col-span-2 p-3 flex flex-col overflow-hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-[10px] text-red-500 uppercase font-black tracking-widest">Cointelegraph Live Feed</h3>
+                        <span class="text-[9px] text-zinc-600 uppercase font-bold">Top Headlines</span>
+                    </div>
+                    <div id="news-feed" class="space-y-0.5 overflow-y-auto flex-1 pr-2">
+                        <div class="text-zinc-700 animate-pulse text-[10px]">Syncing satellite feed...</div>
                     </div>
                 </div>
-                <div class="p-4 bg-zinc-900/30">
-                    <div class="space-y-6">
-                        <div>
-                            <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Halving Countdown</p>
-                            <p id="ui-halving" class="text-lg font-bold font-mono text-red-500 tracking-tighter">---</p>
+                
+                <div class="p-3 bg-zinc-900/20 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-end mb-1">
+                            <span class="text-[9px] text-zinc-500 uppercase font-bold">Difficulty</span>
+                            <span id="ui-diff" class="text-[11px] font-mono">---</span>
                         </div>
-                        <div>
-                            <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Difficulty Adjustment</p>
-                            <p id="ui-diff" class="text-lg font-bold font-mono text-white">---</p>
-                            <div class="w-full bg-zinc-800 h-1 mt-2 rounded-full overflow-hidden">
-                                <div id="ui-diff-bar" class="bg-red-600 h-full w-0 transition-all duration-1000"></div>
-                            </div>
+                        <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
+                            <div id="ui-diff-bar" class="bg-red-600 h-full w-0 transition-all duration-1000"></div>
                         </div>
-                        <div class="p-3 bg-red-600/5 border border-red-600/20 rounded-lg">
-                            <p id="ui-insight" class="text-[11px] text-zinc-300 italic leading-relaxed">Analyzing market trends...</p>
-                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-2 bg-red-600/5 border border-red-600/10 rounded">
+                        <p class="text-[9px] text-red-500 font-black uppercase mb-1">DCD Analyst Note</p>
+                        <p id="ui-insight" class="text-[10px] text-zinc-400 italic leading-snug">Parsing chain state...</p>
+                    </div>
+
+                    <div class="mt-auto pt-2 flex justify-between items-center border-t border-zinc-800/50">
+                        <span class="text-[8px] text-zinc-600 uppercase">Update Sync</span>
+                        <span id="sync-clock" class="text-[8px] text-zinc-600 font-mono">--:--:--</span>
                     </div>
                 </div>
             </div>
@@ -104,11 +104,11 @@
                     <h2 class="text-lg font-bold mb-3 border-b border-zinc-700 pb-1 italic">The SR Mission</h2>
                     <div class="grid grid-cols-2 gap-3 text-xs text-gray-400">
                         <div>
-                            <strong class="text-white block">What is an SR?</strong>
+                            <strong class="text-white block uppercase text-[10px] mb-1">What is an SR?</strong>
                             Super Representatives validate blocks. 27 are elected by the community to run the network.
                         </div>
                         <div>
-                            <strong class="text-white block">Why Vote?</strong>
+                            <strong class="text-white block uppercase text-[10px] mb-1">Why Vote?</strong>
                             Help secure TRON and receive a portion of block rewards generated by your chosen SR.
                         </div>
                     </div>
@@ -118,16 +118,16 @@
                     <h2 class="text-lg font-bold mb-3 border-b border-zinc-700 pb-1">3 Steps to Earn TRX</h2>
                     <div class="space-y-3">
                         <div class="flex gap-3">
-                            <span class="bg-red-600 text-white w-5 h-5 rounded flex items-center justify-center shrink-0 text-xs font-bold">1</span>
-                            <p><span class="text-white font-semibold">Freeze:</span> Use TronLink to freeze TRX for Energy/Bandwidth to get "TRON Power."</p>
+                            <span class="bg-red-600 text-white w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">1</span>
+                            <p class="text-xs"><span class="text-white font-semibold">Freeze:</span> Use TronLink to freeze TRX for Energy/Bandwidth.</p>
                         </div>
                         <div class="flex gap-3">
-                            <span class="bg-red-600 text-white w-5 h-5 rounded flex items-center justify-center shrink-0 text-xs font-bold">2</span>
-                            <p><span class="text-white font-semibold">Vote:</span> Search for our address and cast your votes for www.DigitalCurrencyDaily.com.</p>
+                            <span class="bg-red-600 text-white w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">2</span>
+                            <p class="text-xs"><span class="text-white font-semibold">Vote:</span> Search for our SR address and cast votes.</p>
                         </div>
                         <div class="flex gap-3">
-                            <span class="bg-red-600 text-white w-5 h-5 rounded flex items-center justify-center shrink-0 text-xs font-bold">3</span>
-                            <p><span class="text-white font-semibold">Collect:</span> We distribute <span class="text-red-500 font-bold">80%</span> of rewards automatically to your wallet.</p>
+                            <span class="bg-red-600 text-white w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">3</span>
+                            <p class="text-xs"><span class="text-white font-semibold">Collect:</span> We distribute <span class="text-red-500 font-bold">80%</span> of rewards automatically.</p>
                         </div>
                     </div>
                 </section>
@@ -139,10 +139,9 @@
                         <div class="bg-zinc-800 p-4 rounded-lg border border-red-600 font-bold text-2xl text-red-500">DCD</div>
                         <div>
                             <h2 class="text-xl font-bold">The $DCD Token</h2>
-                            <p class="text-gray-400 text-xs">Support the ecosystem and trade the project token.</p>
+                            <p class="text-gray-400 text-xs italic">Contract: TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 mb-4 text-xs">Contract: <span class="font-mono text-zinc-500">TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</span></p>
                     <div class="flex flex-col sm:flex-row gap-2">
                         <a href="https://sunswap.com/#/v1?tokenAddress=TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv&type=swap" target="_blank" class="tron-gradient text-center py-2 px-4 rounded font-bold text-xs uppercase tracking-wider flex-1">
                             Trade on SunSwap
@@ -156,47 +155,38 @@
         </div>
     </main>
 
-    <footer id="last-updated" class="mt-4 py-4 border-t border-zinc-900 text-center text-[10px] text-gray-600 uppercase tracking-widest">
+    <footer class="mt-4 py-4 border-t border-zinc-900 text-center text-[10px] text-gray-600 uppercase tracking-widest">
         &copy; 2026 DigitalCurrencyDaily.com | Official SR Candidate
     </footer>
 
     <script>
         async function fetchBitcoinData() {
             try {
-                // 1. Market Data (CAD)
-                const mRes = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&sparkline=false');
+                const mRes = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false');
                 const m = await mRes.json();
-                
-                // 2. Network Stats
                 const nRes = await fetch('https://api.blockchain.info/stats');
                 const n = await nRes.json();
 
-                // UI Price & Supply
                 const price = m.market_data.current_price.cad;
                 const change = m.market_data.price_change_percentage_24h;
+                
                 document.getElementById('ui-price').innerText = `$${price.toLocaleString()}`;
                 document.getElementById('ui-change').innerText = `${change > 0 ? '▲' : '▼'} ${Math.abs(change).toFixed(2)}%`;
-                document.getElementById('ui-change').className = `text-[10px] font-bold ${change > 0 ? 'text-green-500' : 'text-red-500'}`;
-                document.getElementById('ui-supply').innerText = `${Math.floor(m.market_data.circulating_supply).toLocaleString()} BTC`;
+                document.getElementById('ui-change').className = `text-[9px] font-bold ${change > 0 ? 'text-green-500' : 'text-red-500'}`;
                 
-                // Hashrate & Difficulty
                 document.getElementById('ui-hashrate').innerText = `${(n.hash_rate / 1000000).toFixed(1)} EH/s`;
-                document.getElementById('ui-tx').innerText = n.n_tx.toLocaleString();
-                document.getElementById('ui-diff').innerText = `${(n.difficulty / 1e12).toFixed(2)}T`;
+                document.getElementById('ui-supply').innerText = `${Math.floor(m.market_data.circulating_supply / 1000000).toFixed(2)}M`;
+                document.getElementById('ui-diff').innerText = `${(n.difficulty / 1e12).toFixed(1)}T`;
 
-                // 3. Halving Countdown
                 const blocksLeft = 1050000 - n.n_blocks_total;
-                const daysLeft = Math.floor((blocksLeft * 10) / 1440);
-                document.getElementById('ui-halving').innerText = `${daysLeft} Days Left`;
+                document.getElementById('ui-halving').innerText = `${Math.floor((blocksLeft * 10) / 1440)} Days`;
 
-                // Difficulty Bar
-                const epochProgress = (n.n_blocks_total % 2016) / 2016 * 100;
-                document.getElementById('ui-diff-bar').style.width = `${epochProgress}%`;
+                document.getElementById('ui-diff-bar').style.width = `${(n.n_blocks_total % 2016) / 2016 * 100}%`;
                 document.getElementById('ui-insight').innerText = change > 0 ? 
-                    "Market sentiment is currently bullish as Bitcoin gains ground." : 
-                    "Bitcoin is currently consolidating within its recent range.";
+                    "Positive price action aligns with rising network difficulty." : 
+                    "Market consolidation phase. Low volatility expected in near-term.";
+                document.getElementById('sync-clock').innerText = new Date().toLocaleTimeString();
 
-                // 4. Cointelegraph News Feed (Last 10)
                 const rssUrl = encodeURIComponent('https://cointelegraph.com/rss/tag/bitcoin');
                 const newsRes = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
                 const newsData = await newsRes.json();
@@ -206,22 +196,21 @@
 
                 newsData.items.slice(0, 10).forEach(item => {
                     const div = document.createElement('div');
-                    div.className = "bg-zinc-800/40 p-3 rounded border-l-2 border-zinc-700 hover:border-red-600 transition-all cursor-pointer group";
+                    // Adjusted padding and margin for 5+ visible headlines
+                    div.className = "p-1.5 border-b border-zinc-800/40 hover:bg-zinc-800/30 transition-all cursor-pointer group flex items-start gap-2";
                     div.innerHTML = `
-                        <p class="text-[9px] text-red-500 uppercase font-black mb-1">Cointelegraph</p>
-                        <p class="text-xs font-medium text-zinc-200 group-hover:text-white">${item.title}</p>
+                        <div class="mt-1 w-1 h-1 bg-red-600 rounded-full shrink-0"></div>
+                        <p class="text-[10px] font-medium text-zinc-400 group-hover:text-red-500 leading-tight">${item.title}</p>
                     `;
                     div.onclick = () => window.open(item.link, '_blank');
                     feed.appendChild(div);
                 });
 
-            } catch (error) {
-                console.error("Dashboard Sync Error:", error);
-            }
+            } catch (error) { console.error("Sync Error", error); }
         }
 
         fetchBitcoinData();
-        setInterval(fetchBitcoinData, 300000); // Refresh every 5 minutes
+        setInterval(fetchBitcoinData, 300000);
     </script>
 </body>
 </html>
