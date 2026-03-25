@@ -10,26 +10,24 @@
         :root { --tron-red: #ff0013; --dcd-blue: #00d2ff; --dark-bg: #0b0b0e; --card-bg: #16161d; }
         body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; line-height: 1.5; }
         
-        /* Compact Header */
-        header { padding: 30px 20px; text-align: center; background: #000; border-bottom: 1px solid #333; }
-        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; }
-        .sr-tag { font-family: monospace; color: var(--dcd-blue); font-size: 0.85rem; display: block; margin: 5px 0; }
+        header { padding: 25px 20px; text-align: center; background: #000; border-bottom: 1px solid #333; }
+        h1 { margin: 0; font-size: 1.6rem; letter-spacing: 1px; }
+        .sr-tag { font-family: monospace; color: var(--dcd-blue); font-size: 0.8rem; display: block; margin: 5px 0; }
         
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .social-links { margin: 15px 0; }
-        .social-links a { color: white; font-size: 1.5rem; margin: 0 12px; transition: 0.3s; }
+        .social-links { margin: 10px 0; }
+        .social-links a { color: white; font-size: 1.4rem; margin: 0 12px; transition: 0.3s; }
         .social-links a:hover { color: var(--dcd-blue); }
 
-        /* Wallet Button */
-        #connect-btn { background: var(--tron-red); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 10px 0; }
-        #connect-btn.connected { background: #222; border: 1px solid var(--dcd-blue); color: var(--dcd-blue); }
+        #connect-btn { background: var(--tron-red); color: white; border: none; padding: 8px 18px; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 10px 0; }
+        #connect-btn.connected { background: #1a1a1a; border: 1px solid var(--dcd-blue); color: var(--dcd-blue); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         .card { background: var(--card-bg); padding: 25px; border-radius: 12px; border-top: 3px solid var(--tron-red); }
         .token-card { border-top-color: var(--dcd-blue); }
 
         .stat-box { background: #000; padding: 15px; border-radius: 8px; margin: 15px 0; border: 1px solid #222; text-align: center; }
-        .val { display: block; font-size: 1.5rem; font-weight: bold; color: #00ff88; }
+        .val { display: block; font-size: 1.4rem; font-weight: bold; color: #00ff88; }
         .label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
 
         .btn-sun { display: block; background: var(--dcd-blue); color: black; text-align: center; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; }
@@ -52,19 +50,17 @@
     <div class="grid">
         <div class="card">
             <h3>TRON Super Representative</h3>
-            <p>SRs secure the TRON network. Vote for DigitalCurrencyDaily to support ecosystem growth.</p>
-            <p><b>Reward Ratio:</b> 90% - 100% of generated TRX returned to voters.</p>
-            <hr style="border:0; border-top:1px solid #333;">
-            <p><small>1. Freeze TRX in TronLink (Stake 2.0)<br>2. Use "Vote" tab to find our address.<br>3. Earn TRX automatically.</small></p>
+            <p>Vote for <b>DigitalCurrencyDaily</b> to support the network. We distribute <b>90-100%</b> of rewards to voters.</p>
+            <p><small>Instructions:<br>1. Freeze TRX for Power (Stake 2.0).<br>2. Vote for TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ.<br>3. Rewards accumulate daily.</small></p>
         </div>
 
         <div class="card token-card">
             <h3>$DCD Token Stats</h3>
-            <p><small>Contract: TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</small></p>
+            <p><small>TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</small></p>
             
             <div class="stat-box">
                 <span class="label">Price (DCD/TRX)</span>
-                <span class="val" id="price-out">---</span>
+                <span class="val" id="price-out">Connect Wallet</span>
             </div>
             <div class="stat-box">
                 <span class="label">Total Supply</span>
@@ -79,60 +75,73 @@
 <footer>&copy; 2026 DigitalCurrencyDaily</footer>
 
 <script>
-const PAIR = "TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz";
-const TOKEN = "TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv";
+// Required Configuration
+const DCD_TOKEN = "TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv";
+const SUN_PAIR = "TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz";
 
-const MIN_ABI = [
+const ABI = [
     { "constant": true, "inputs": [], "name": "getReserves", "outputs": [ { "name": "_reserve0", "type": "uint112" }, { "name": "_reserve1", "type": "uint112" } ], "type": "function" },
+    { "constant": true, "inputs": [], "name": "token0", "outputs": [ { "name": "", "type": "address" } ], "type": "function" },
     { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [ { "name": "", "type": "uint256" } ], "type": "function" },
     { "constant": true, "inputs": [], "name": "decimals", "outputs": [ { "name": "", "type": "uint8" } ], "type": "function" }
 ];
 
 async function connectWallet() {
-    if (!window.tronWeb) {
-        alert("Please install TronLink!");
-        return;
-    }
-    try {
-        // Standard request for accounts
-        await window.tronLink.request({ method: 'tron_requestAccounts' });
-        document.getElementById('connect-btn').innerText = "Wallet Connected";
-        document.getElementById('connect-btn').classList.add('connected');
-        fetchData();
-    } catch (e) {
-        console.error("Connection failed", e);
+    if (window.tronWeb) {
+        try {
+            await window.tronLink.request({ method: 'tron_requestAccounts' });
+            document.getElementById('connect-btn').innerText = "Connected";
+            document.getElementById('connect-btn').classList.add('connected');
+            fetchData();
+        } catch (e) {
+            console.error("Connection Refused");
+        }
+    } else {
+        alert("TronLink not detected.");
     }
 }
 
 async function fetchData() {
+    const tw = window.tronWeb;
     try {
-        const tw = window.tronWeb;
-        
-        // Fetch Supply & Decimals
-        const tokenContract = await tw.contract(MIN_ABI, TOKEN);
+        // 1. Fetch Supply & Decimals
+        const tokenContract = await tw.contract(ABI, DCD_TOKEN);
         const decimals = await tokenContract.decimals().call();
-        const supplyRaw = await tokenContract.totalSupply().call();
-        const supply = supplyRaw / Math.pow(10, decimals);
-        document.getElementById('supply-out').innerText = supply.toLocaleString();
+        const rawSupply = await tokenContract.totalSupply().call();
+        document.getElementById('supply-out').innerText = (rawSupply / Math.pow(10, decimals)).toLocaleString();
 
-        // Fetch SunSwap Price
-        const pairContract = await tw.contract(MIN_ABI, PAIR);
+        // 2. Fetch Reserves from SunSwap
+        const pairContract = await tw.contract(ABI, SUN_PAIR);
         const reserves = await pairContract.getReserves().call();
-        
-        // Calculation (TRX is always 6 decimals)
-        // Reserves on SunSwap can be flipped; typically reserve0 is Token, reserve1 is TRX
-        const price = (reserves._reserve1 / 1e6) / (reserves._reserve0 / Math.pow(10, decimals));
-        
+        const t0 = await pairContract.token0().call();
+
+        // Convert DCD to Hex to compare with token0
+        const dcdHex = tw.address.toHex(DCD_TOKEN).toLowerCase();
+        const t0Hex = t0.replace('0x', '41').toLowerCase();
+
+        let dcdRes, trxRes;
+        // Identify which reserve is DCD and which is TRX (6 decimals)
+        if (t0Hex.includes(dcdHex)) {
+            dcdRes = reserves._reserve0;
+            trxRes = reserves._reserve1;
+        } else {
+            dcdRes = reserves._reserve1;
+            trxRes = reserves._reserve0;
+        }
+
+        const price = (trxRes / 1e6) / (dcdRes / Math.pow(10, decimals));
         document.getElementById('price-out').innerText = price.toFixed(6) + " TRX";
+
     } catch (err) {
-        console.error("Data error:", err);
-        document.getElementById('price-out').innerText = "Error Fetching";
+        console.error("Fetch Error:", err);
+        document.getElementById('price-out').innerText = "Sync Error";
     }
 }
 
-// Auto-run if already authorized
+// Initial check
 window.addEventListener('load', () => {
     if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+        document.getElementById('connect-btn').innerText = "Wallet Active";
         fetchData();
     }
 });
