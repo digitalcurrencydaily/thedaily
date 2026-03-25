@@ -23,23 +23,27 @@
             <p class="text-[10px] uppercase tracking-widest opacity-80 font-bold">Official TRON Super Representative Candidate</p>
         </div>
         <div class="flex gap-4 text-sm font-bold">
-            <a href="https://x.com/digitalcurdaily" target="_blank" class="hover:text-black transition"><i class="fab fa-x-twitter"></i> X.com</a>
-            <a href="https://t.me/digitalcurrencydaily" target="_blank" class="hover:text-black transition"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="https://x.com/digitalcurdaily" target="_blank" class="hover:text-black transition flex items-center gap-1.5">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://t.me/digitalcurrencydaily" target="_blank" class="hover:text-black transition flex items-center gap-1.5">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
         </div>
     </header>
 
     <main class="max-w-[1400px] mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-4">
         
         <aside class="lg:col-span-3 space-y-4">
-            <section class="glass-panel p-5 rounded-2xl border-l-4 border-l-red-600">
+            <section class="glass-panel p-5 rounded-2xl border-l-4 border-l-red-600 shadow-2xl">
                 <h2 class="font-bold text-red-500 uppercase mb-4"><i class="fas fa-bolt mr-2"></i>Live Market</h2>
                 <div class="space-y-3">
                     <div class="bg-black/40 p-3 rounded-lg border border-white/5">
-                        <p class="text-[10px] text-slate-500 uppercase font-bold">Current 1 DCD Price</p>
-                        <p id="token-price" class="text-2xl font-mono font-bold text-green-400">Loading...</p>
-                        <p class="text-[9px] text-slate-500 mt-1 italic font-mono">Pair: TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz</p>
+                        <p class="text-[10px] text-slate-500 uppercase font-bold">Price for 1 DCD</p>
+                        <p id="token-price" class="text-xl font-mono font-bold text-green-400">Fetching...</p>
+                        <p class="text-[9px] text-slate-500 mt-1 italic font-mono uppercase">On-Chain Verification</p>
                     </div>
-                    <a href="https://sunswap.com/#/v1?tokenAddress=TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv&type=swap" target="_blank" class="block w-full text-center py-2 bg-red-600 hover:bg-red-500 rounded-lg font-bold text-xs transition">
+                    <a href="https://sunswap.com/#/v1?tokenAddress=TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv&type=swap" target="_blank" class="block w-full text-center py-2 bg-red-600 hover:bg-red-500 rounded-lg font-bold text-xs transition shadow-lg">
                         TRADE ON SUNSWAP <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
@@ -48,76 +52,4 @@
             <section class="glass-panel p-5 rounded-2xl">
                 <h2 class="font-bold text-red-500 uppercase mb-3"><i class="fas fa-coins mr-2"></i>$DCD Token</h2>
                 <p class="text-xs text-slate-400 mb-3 leading-relaxed">Utility token for the DigitalCurrencyDaily ecosystem.</p>
-                <div class="bg-black/30 p-3 rounded border border-white/5 break-all">
-                    <p class="text-[9px] text-slate-500 font-bold uppercase mb-1">Smart Contract Address:</p>
-                    <code class="text-[11px] text-red-300 font-mono">TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</code>
-                </div>
-            </section>
-        </aside>
-
-        <article class="lg:col-span-5 space-y-4">
-            <section class="glass-panel p-6 rounded-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 bg-red-600 text-white font-black rounded-bl-2xl shadow-xl">80/20</div>
-                <h2 class="font-bold text-white uppercase mb-4 border-b border-white/10 pb-2">What is a TRON SR?</h2>
-                <p class="text-sm text-slate-300 mb-4">
-                    Super Representatives (SRs) are the 27 elected nodes that power the TRON network. They are responsible for <strong>validating transactions</strong> and <strong>producing new blocks</strong> every 3 seconds.
-                </p>
-                <p class="text-sm text-slate-300">
-                    When you vote for <strong>DigitalCurrencyDaily</strong>, we share the block rewards with you. We maintain an <strong>80% reward ratio</strong>—meaning 80% of the newly generated TRX is distributed back to our community of voters.
-                </p>
-                <div class="mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
-                    <h3 class="text-xs font-bold text-red-400 uppercase mb-2">Candidate Credentials</h3>
-                    <ul class="text-xs space-y-2 text-slate-400">
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 24/7 Node Uptime for maximum rewards.</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Automated daily reward distribution.</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Community-driven governance participation.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="glass-panel p-6 rounded-2xl bg-gradient-to-br from-red-950/20 to-transparent">
-                <h2 class="font-bold text-white uppercase mb-2">Target Candidate Wallet</h2>
-                <p class="text-xs text-slate-400 mb-3">Copy this address into TronLink to cast your votes:</p>
-                <div class="flex items-center gap-2">
-                    <code class="flex-grow bg-black/60 p-3 rounded-lg font-mono text-sm text-red-400 border border-red-500/30">TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</code>
-                </div>
-                <a href="https://tronscan.org/#/address/TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ" target="_blank" class="inline-block mt-3 text-xs text-slate-500 hover:text-white underline font-bold">VERIFY ON TRONSCAN.ORG</a>
-            </section>
-        </article>
-
-        <section class="lg:col-span-4 glass-panel p-6 rounded-2xl border-r-4 border-r-red-600">
-            <h2 class="font-bold text-red-500 uppercase mb-4"><i class="fas fa-list-ol mr-2"></i>How to Vote & Earn</h2>
-            <div class="space-y-4">
-                <div class="flex gap-4">
-                    <div class="shrink-0 w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-bold text-white shadow-lg">1</div>
-                    <div>
-                        <h4 class="font-bold text-sm">Install TronLink</h4>
-                        <p class="text-xs text-slate-400">Download the TronLink wallet and ensure you have a balance of TRX tokens.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4">
-                    <div class="shrink-0 w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-bold text-white shadow-lg">2</div>
-                    <div>
-                        <h4 class="font-bold text-sm">Freeze TRX Tokens</h4>
-                        <p class="text-xs text-slate-400">Select <strong>Stake</strong>. Freeze TRX for Energy or Bandwidth. This locks them for 3 days and grants you <strong>Tron Power</strong>.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4">
-                    <div class="shrink-0 w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-bold text-white shadow-lg">3</div>
-                    <div>
-                        <h4 class="font-bold text-sm">Perform Votes</h4>
-                        <p class="text-xs text-slate-400">Go to <strong>Vote</strong>. Search for "DigitalCurrencyDaily" and allocate your Tron Power to our candidate address.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 border-t border-white/5 pt-4">
-                    <div class="shrink-0 w-8 h-8 rounded-full bg-green-600 flex items-center justify-center font-bold text-white shadow-lg"><i class="fas fa-check"></i></div>
-                    <div>
-                        <h4 class="font-bold text-sm">Collect Rewards</h4>
-                        <p class="text-xs text-slate-400">Once votes are cast, you earn newly generated TRX from every block we produce, distributed automatically.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="mt-auto p-4 text-center text-[11px] text-slate-600 border-t border-white/5 font-bold uppercase tracking-wid
+                <div class="bg-black/30 p-3 rounded border border-white/5 break-
