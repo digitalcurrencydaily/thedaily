@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigitalCurrencyDaily | TRON SR</title>
+    <title>DigitalCurrencyDaily | TRON SR & BTC Market</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; }
         .tron-gradient { background: linear-gradient(90deg, #ff0013 0%, #a00000 100%); }
         .card { background: #1a1a1a; border: 1px solid #333; }
         .card:hover { border-color: #ff0013; }
         h1, h2 { letter-spacing: -0.025em; }
+        
+        /* Custom scrollbar for news */
+        #news-feed::-webkit-scrollbar { width: 4px; }
+        #news-feed::-webkit-scrollbar-thumb { background: #ff0013; border-radius: 10px; }
     </style>
 </head>
 <body class="leading-snug text-sm">
@@ -35,8 +39,66 @@
             </div>
         </header>
 
-        <div class="grid lg:grid-cols-2 gap-4">
+        <!-- BITCOIN MARKET TERMINAL INTEGRATION -->
+        <section class="card rounded-xl border-red-600/30 overflow-hidden mb-6">
+            <div class="bg-zinc-900/80 p-4 border-b border-zinc-800 flex justify-between items-center">
+                <h2 class="text-sm font-black uppercase tracking-widest text-red-500 flex items-center gap-2">
+                    <i class="fab fa-bitcoin"></i> Bitcoin Market Intelligence (CAD)
+                </h2>
+                <div class="flex items-center gap-2 text-[10px] text-zinc-500 font-bold uppercase">
+                    <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span> Live Network Data
+                </div>
+            </div>
             
+            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-800 border-b border-zinc-800">
+                <div class="p-4">
+                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Price CAD</p>
+                    <p id="ui-price" class="text-xl font-bold font-mono text-white">---</p>
+                    <p id="ui-change" class="text-[10px] font-bold">---</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Hashrate</p>
+                    <p id="ui-hashrate" class="text-xl font-bold font-mono text-white">---</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">24h Txns</p>
+                    <p id="ui-tx" class="text-xl font-bold font-mono text-white">---</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Supply</p>
+                    <p id="ui-supply" class="text-lg font-bold font-mono text-white">---</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-zinc-800">
+                <div class="lg:col-span-2 p-4">
+                    <h3 class="text-[10px] text-red-500 uppercase font-bold mb-4 tracking-tighter">Latest from Cointelegraph</h3>
+                    <div id="news-feed" class="space-y-3 max-h-[300px] overflow-y-auto pr-2">
+                        <div class="text-zinc-600 italic">Connecting to feed...</div>
+                    </div>
+                </div>
+                <div class="p-4 bg-zinc-900/30">
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Halving Countdown</p>
+                            <p id="ui-halving" class="text-lg font-bold font-mono text-red-500 tracking-tighter">---</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Difficulty Adjustment</p>
+                            <p id="ui-diff" class="text-lg font-bold font-mono text-white">---</p>
+                            <div class="w-full bg-zinc-800 h-1 mt-2 rounded-full overflow-hidden">
+                                <div id="ui-diff-bar" class="bg-red-600 h-full w-0 transition-all duration-1000"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-red-600/5 border border-red-600/20 rounded-lg">
+                            <p id="ui-insight" class="text-[11px] text-zinc-300 italic leading-relaxed">Analyzing market trends...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid lg:grid-cols-2 gap-4">
             <div class="space-y-4">
                 <section class="card p-4 rounded-xl">
                     <h2 class="text-lg font-bold mb-3 border-b border-zinc-700 pb-1 italic">The SR Mission</h2>
@@ -80,9 +142,7 @@
                             <p class="text-gray-400 text-xs">Support the ecosystem and trade the project token.</p>
                         </div>
                     </div>
-                    
                     <p class="text-gray-400 mb-4 text-xs">Contract: <span class="font-mono text-zinc-500">TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</span></p>
-                    
                     <div class="flex flex-col sm:flex-row gap-2">
                         <a href="https://sunswap.com/#/v1?tokenAddress=TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv&type=swap" target="_blank" class="tron-gradient text-center py-2 px-4 rounded font-bold text-xs uppercase tracking-wider flex-1">
                             Trade on SunSwap
@@ -96,9 +156,72 @@
         </div>
     </main>
 
-    <footer class="mt-4 py-4 border-t border-zinc-900 text-center text-[10px] text-gray-600 uppercase tracking-widest">
+    <footer id="last-updated" class="mt-4 py-4 border-t border-zinc-900 text-center text-[10px] text-gray-600 uppercase tracking-widest">
         &copy; 2026 DigitalCurrencyDaily.com | Official SR Candidate
     </footer>
 
+    <script>
+        async function fetchBitcoinData() {
+            try {
+                // 1. Market Data (CAD)
+                const mRes = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&sparkline=false');
+                const m = await mRes.json();
+                
+                // 2. Network Stats
+                const nRes = await fetch('https://api.blockchain.info/stats');
+                const n = await nRes.json();
+
+                // UI Price & Supply
+                const price = m.market_data.current_price.cad;
+                const change = m.market_data.price_change_percentage_24h;
+                document.getElementById('ui-price').innerText = `$${price.toLocaleString()}`;
+                document.getElementById('ui-change').innerText = `${change > 0 ? '▲' : '▼'} ${Math.abs(change).toFixed(2)}%`;
+                document.getElementById('ui-change').className = `text-[10px] font-bold ${change > 0 ? 'text-green-500' : 'text-red-500'}`;
+                document.getElementById('ui-supply').innerText = `${Math.floor(m.market_data.circulating_supply).toLocaleString()} BTC`;
+                
+                // Hashrate & Difficulty
+                document.getElementById('ui-hashrate').innerText = `${(n.hash_rate / 1000000).toFixed(1)} EH/s`;
+                document.getElementById('ui-tx').innerText = n.n_tx.toLocaleString();
+                document.getElementById('ui-diff').innerText = `${(n.difficulty / 1e12).toFixed(2)}T`;
+
+                // 3. Halving Countdown
+                const blocksLeft = 1050000 - n.n_blocks_total;
+                const daysLeft = Math.floor((blocksLeft * 10) / 1440);
+                document.getElementById('ui-halving').innerText = `${daysLeft} Days Left`;
+
+                // Difficulty Bar
+                const epochProgress = (n.n_blocks_total % 2016) / 2016 * 100;
+                document.getElementById('ui-diff-bar').style.width = `${epochProgress}%`;
+                document.getElementById('ui-insight').innerText = change > 0 ? 
+                    "Market sentiment is currently bullish as Bitcoin gains ground." : 
+                    "Bitcoin is currently consolidating within its recent range.";
+
+                // 4. Cointelegraph News Feed (Last 10)
+                const rssUrl = encodeURIComponent('https://cointelegraph.com/rss/tag/bitcoin');
+                const newsRes = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+                const newsData = await newsRes.json();
+                
+                const feed = document.getElementById('news-feed');
+                feed.innerHTML = ''; 
+
+                newsData.items.slice(0, 10).forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "bg-zinc-800/40 p-3 rounded border-l-2 border-zinc-700 hover:border-red-600 transition-all cursor-pointer group";
+                    div.innerHTML = `
+                        <p class="text-[9px] text-red-500 uppercase font-black mb-1">Cointelegraph</p>
+                        <p class="text-xs font-medium text-zinc-200 group-hover:text-white">${item.title}</p>
+                    `;
+                    div.onclick = () => window.open(item.link, '_blank');
+                    feed.appendChild(div);
+                });
+
+            } catch (error) {
+                console.error("Dashboard Sync Error:", error);
+            }
+        }
+
+        fetchBitcoinData();
+        setInterval(fetchBitcoinData, 300000); // Refresh every 5 minutes
+    </script>
 </body>
 </html>
