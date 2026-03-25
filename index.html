@@ -3,172 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigitalCurrencyDaily | TRON Super Representative Candidate</title>
-    <script src="https://cdn.jsdelivr.net/npm/tronweb@latest/dist/TronWeb.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>DigitalCurrencyDaily | TRON Super Representative</title>
+    <script src="https://cdn.jsdelivr.net/npm/tronweb@6.0.0/dist/TronWeb.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --tron-red: #ff0013;
-            --dcd-blue: #00d2ff;
-            --dark-bg: #0f0f12;
-            --card-bg: #1a1a20;
-            --text-gray: #b0b0b0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: white;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-
-        header {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #1a1a20 0%, #000 100%);
-            border-bottom: 2px solid var(--tron-red);
-        }
-
-        .sr-address {
-            background: #25252b;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-family: monospace;
-            color: var(--dcd-blue);
-            display: inline-block;
-            margin: 20px 0;
-            word-break: break-all;
-        }
-
-        .social-icons { font-size: 2rem; margin-top: 20px; }
-        .social-icons a { color: white; margin: 0 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--dcd-blue); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 4px solid var(--tron-red);
-        }
-
-        .token-info {
-            background: linear-gradient(45deg, #1a1a20, #25252b);
-            border-left: 4px solid var(--dcd-blue);
-        }
-
-        .price-box {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00ff88;
-            margin: 15px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: var(--tron-red);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
-
-        ol { padding-left: 20px; }
-        ol li { margin-bottom: 15px; color: var(--text-gray); }
-        b { color: white; }
-
-        footer { text-align: center; padding: 40px; color: var(--text-gray); font-size: 0.9rem; }
+        :root { --tron-red: #ff0013; --dcd-blue: #00d2ff; --dark-bg: #0b0b0e; --card-bg: #16161d; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--dark-bg); color: #e0e0e0; margin: 0; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; padding: 60px 20px; border-bottom: 1px solid #333; background: radial-gradient(circle at top, #1a1a24 0%, #0b0b0e 100%); }
+        h1 { color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .sr-badge { background: #25252b; padding: 8px 15px; border-radius: 50px; border: 1px solid var(--tron-red); font-family: monospace; color: var(--dcd-blue); font-size: 0.9rem; }
+        .social-nav { margin-top: 25px; }
+        .social-nav a { color: #fff; font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: 0.3s; }
+        .social-nav a:hover { color: var(--dcd-blue); transform: scale(1.1); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 30px; border: 1px solid #2d2d35; }
+        .highlight { border-top: 3px solid var(--dcd-blue); }
+        .price-display { background: #000; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 1px dashed #444; }
+        #dcd-price { font-size: 2rem; color: #00ffa3; font-weight: bold; display: block; }
+        .btn-trade { display: block; background: var(--tron-red); color: #fff; text-align: center; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .btn-trade:hover { filter: brightness(1.2); }
+        small { color: #888; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>DigitalCurrencyDaily</h1>
-    <p>Empowering the TRON Ecosystem through Governance and Community</p>
-    <div class="sr-address">SR Candidate: TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</div>
-    
-    <div class="social-icons">
-        <a href="https://x.com/digitalcurdaily" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://t.me/digitalcurrencydaily" target="_blank"><i class="fab fa-telegram"></i></a>
+    <p>TRON Super Representative Candidate</p>
+    <span class="sr-badge">TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</span>
+    <div class="social-nav">
+        <a href="https://x.com/digitalcurdaily" target="_blank" title="Follow on X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/digitalcurrencydaily" target="_blank" title="Join Telegram"><i class="fab fa-telegram"></i></a>
     </div>
 </header>
 
 <div class="container">
-    
-    <section>
-        <h2>What is a TRON Super Representative?</h2>
-        <p>The TRON network uses a **Delegated Proof of Stake (DPoS)** consensus mechanism. Unlike mining, TRX holders vote for 27 **Super Representatives (SRs)** who are responsible for validating transactions and producing blocks. By voting for DigitalCurrencyDaily, you participate in network security and earn a share of the block rewards.</p>
-    </section>
-
     <div class="grid">
         <div class="card">
-            <h3>How to Vote & Earn</h3>
-            <ol>
-                <li><b>Install TronLink:</b> Download the extension or mobile app and fund it with TRX.</li>
-                <li><b>Stake (Freeze) TRX:</b> Click "Stake" in TronLink. Choose **Stake 2.0** to freeze TRX for either **Energy** or **Bandwidth**. This generates **TRON Power**.</li>
-                <li><b>Vote:</b> Go to the "Vote" section. Search for the address: <br><small>TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</small></li>
-                <li><b>Earn Rewards:</b> Once you cast your votes, you will automatically start earning TRX rewards based on the SR's distribution ratio.</li>
-            </ol>
-            <p><b>Reward Ratio:</b> DigitalCurrencyDaily offers a competitive **90% - 100% reward distribution** to its voters, ensuring maximum yield for your support.</p>
+            <h3>Support the Network</h3>
+            <p>Super Representatives (SRs) are the backbone of the TRON DAO, producing blocks and securing the network. By voting for <b>DigitalCurrencyDaily</b>, you are voting for transparency and efficiency.</p>
+            <p><b>Voter Rewards:</b> We distribute <b>90% - 100%</b> of our block rewards back to our voters. Rewards are distributed automatically via the blockchain.</p>
+            <hr style="border-color:#333">
+            <h4>How to Vote:</h4>
+            <ul style="padding-left:18px">
+                <li>Open <b>TronLink</b> and click "Stake".</li>
+                <li>Freeze TRX for <b>Energy</b> or <b>Bandwidth</b> (Stake 2.0).</li>
+                <li>Search for our address in the "Vote" tab.</li>
+                <li>Confirm and start earning TRX daily.</li>
+            </ul>
         </div>
 
-        <div class="card token-info">
-            <h3>$DCD Token Info</h3>
-            <p>The native utility token for the DigitalCurrencyDaily ecosystem.</p>
-            <p><small>Contract Address:</small><br><b>TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</b></p>
+        <div class="card highlight">
+            <h3>$DCD Token Ecosystem</h3>
+            <p>Utility token for our community. Hold $DCD to access premium insights and additional governance features.</p>
+            <p><small>Contract:</small><br><code style="font-size:0.85rem">TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</code></p>
             
-            <hr style="border: 0; border-top: 1px solid #444;">
-            
-            <div id="price-container">
-                <p>Current DCD/TRX Price:</p>
-                <div class="price-box" id="dcd-price">Loading...</div>
-                <a href="https://sunswap.com/#/scan/pair/TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz" target="_blank" class="btn">Trade on SunSwap</a>
+            <div class="price-display">
+                <small>Current Price (DCD/TRX)</small>
+                <span id="dcd-price">Connecting...</span>
             </div>
+            
+            <a href="https://sunswap.com/#/scan/pair/TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz" target="_blank" class="btn-trade">
+                Trade on SunSwap <i class="fas fa-external-link-alt" style="font-size:0.8rem"></i>
+            </a>
         </div>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 DigitalCurrencyDaily. Built on TRON.</p>
-</footer>
-
 <script>
-    // Initialize TronWeb (Mainnet)
-    const tronWeb = new TronWeb({
-        fullHost: 'https://api.trongrid.io'
-    });
+/**
+ * TRONWEB CONFIGURATION
+ */
+const pairAddress = "TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz";
+const tokenAddress = "TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv";
 
-    async function fetchPrice() {
-        try {
-            // SunSwap V2 Pair Address
-            const pairAddress = "TM6fUHjWvB4kL91GiNTZrkDu5uzKEgGXoz";
-            
-            // This is a simplified logic to fetch reserves from the pair contract
-            // In a production environment, you'd call the 'getReserves' function
-            const contract = await tronWeb.contract().at(pairAddress);
-            const reserves = await contract.getReserves().call();
-            
-            // reserves[0] and reserves[1] correspond to the token balances
-            // Logic: Price = ReserveTRX / ReserveDCD (adjusted for decimals)
-            const price = (reserves[0] / reserves[1]).toFixed(4);
-            
-            document.getElementById('dcd-price').innerText = `${price} TRX`;
-        } catch (e) {
-            console.error("Price fetch failed", e);
-            document.getElementById('dcd-price').innerText = "Visit SunSwap for Price";
+// Minimal ABI for SunSwap V2 Pair & TRC20 Decimals
+const minABI = [
+    { "constant": true, "inputs": [], "name": "getReserves", "outputs": [ { "name": "_reserve0", "type": "uint112" }, { "name": "_reserve1", "type": "uint112" }, { "name": "_blockTimestampLast", "type": "uint32" } ], "type": "function" },
+    { "constant": true, "inputs": [], "name": "token0", "outputs": [ { "name": "", "type": "address" } ], "type": "function" },
+    { "constant": true, "inputs": [], "name": "decimals", "outputs": [ { "name": "", "type": "uint8" } ], "type": "function" }
+];
+
+async function updatePrice() {
+    try {
+        // Initialize TronWeb (Mainnet)
+        const tw = new TronWeb({ fullHost: 'https://api.trongrid.io' });
+        
+        // 1. Get the Pair Contract
+        const pairContract = await tw.contract(minABI, pairAddress);
+        
+        // 2. Determine which token is DCD and which is TRX (WTRX)
+        const token0Address = await pairContract.token0().call();
+        const hexDCD = tw.address.toHex(tokenAddress).toLowerCase();
+        const hexToken0 = token0Address.replace('0x', '41').toLowerCase();
+
+        // 3. Fetch Reserves
+        const reserves = await pairContract.getReserves().call();
+        
+        // 4. Fetch DCD Decimals (usually 6 or 18)
+        const dcdContract = await tw.contract(minABI, tokenAddress);
+        const dcdDecimals = await dcdContract.decimals().call();
+        
+        let dcdRes, trxRes;
+        if (hexToken0.includes(hexDCD)) {
+            dcdRes = reserves._reserve0;
+            trxRes = reserves._reserve1;
+        } else {
+            dcdRes = reserves._reserve1;
+            trxRes = reserves._reserve0;
         }
-    }
 
-    // Run price fetch on load
-    fetchPrice();
+        // 5. Calculate Price (Adjusting for decimals: TRX is always 6)
+        // Formula: (trxRes / 10^6) / (dcdRes / 10^dcdDecimals)
+        const adjTRX = trxRes / Math.pow(10, 6);
+        const adjDCD = dcdRes / Math.pow(10, dcdDecimals);
+        const price = (adjTRX / adjDCD).toFixed(6);
+
+        document.getElementById('dcd-price').innerText = `${price} TRX`;
+    } catch (err) {
+        console.error("Price fetch error:", err);
+        document.getElementById('dcd-price').innerText = "Check SunSwap";
+    }
+}
+
+// Auto-refresh every 30 seconds
+updatePrice();
+setInterval(updatePrice, 30000);
 </script>
 
 </body>
