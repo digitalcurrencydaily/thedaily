@@ -10,8 +10,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; }
         .tron-gradient { background: linear-gradient(90deg, #ff0013 0%, #a00000 100%); }
-        .card { background: #1a1a1a; border: 1px solid #333; }
-        .card:hover { border-color: #ff0013; }
+        /* Consistent red border line on each container */
+        .card { background: #1a1a1a; border: 1px solid #ff0013; }
         h1, h2 { letter-spacing: -0.025em; }
         
         #news-feed::-webkit-scrollbar { width: 3px; }
@@ -21,8 +21,8 @@
 </head>
 <body class="leading-snug text-sm">
 
-    <nav class="py-3 px-6 flex justify-between items-center max-w-6xl mx-auto border-b border-zinc-800">
-        <div class="text-xl font-bold">
+    <nav class="py-3 px-4 md:px-6 flex justify-between items-center max-w-6xl mx-auto border-b border-zinc-800">
+        <div class="text-lg md:text-xl font-bold">
             <span class="text-red-600 underline">www.</span>DigitalCurrencyDaily<span class="text-red-600">.com</span>
         </div>
         <div class="space-x-4 flex items-center">
@@ -31,66 +31,65 @@
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-4">
+    <main class="max-w-6xl mx-auto px-4 md:px-6 py-4">
         <header class="text-center mb-4">
-            <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Power TRON. <span class="text-red-600">Earn Rewards.</span></h1>
-            <div class="bg-red-600/10 border border-red-600/40 p-1 px-3 rounded inline-block">
-                <p class="text-[10px] font-mono text-red-400 uppercase tracking-tighter">SR: TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</p>
+            <h1 class="text-2xl md:text-4xl font-extrabold mb-2 px-2">Power TRON. <span class="text-red-600">Earn Rewards.</span></h1>
+            <div class="bg-red-600/10 border border-red-600/40 p-1 px-3 rounded inline-block max-w-full">
+                <p class="text-[9px] md:text-[10px] font-mono text-red-400 uppercase tracking-tighter break-all">SR: TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</p>
             </div>
         </header>
 
-        <section class="card rounded-lg border-red-600/20 overflow-hidden mb-6 shadow-2xl">
+        <section class="card rounded-lg overflow-hidden mb-4 shadow-2xl mx-auto w-full">
             <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-800 border-b border-zinc-800 bg-zinc-900/50">
-                <div class="p-2 px-4 flex items-center justify-between">
-                    <span class="text-[9px] text-zinc-500 font-black uppercase">BTC/CAD</span>
+                <div class="p-2 px-3 flex items-center justify-between border-b md:border-b-0 border-zinc-800">
+                    <span class="text-[8px] md:text-[9px] text-zinc-500 font-black uppercase">BTC/CAD</span>
                     <div class="text-right">
-                        <span id="ui-price" class="text-sm font-bold font-mono">---</span>
-                        <span id="ui-change" class="text-[9px] block leading-none font-bold">---</span>
+                        <span id="ui-price" class="text-xs md:text-sm font-bold font-mono">---</span>
+                        <span id="ui-change" class="text-[8px] md:text-[9px] block leading-none font-bold">---</span>
                     </div>
                 </div>
-                <div class="p-2 px-4 flex items-center justify-between">
-                    <span class="text-[9px] text-zinc-500 font-black uppercase">Hashrate</span>
-                    <span id="ui-hashrate" class="text-sm font-bold font-mono">---</span>
+                <div class="p-2 px-3 flex items-center justify-between border-b md:border-b-0 border-zinc-800">
+                    <span class="text-[8px] md:text-[9px] text-zinc-500 font-black uppercase">Hashrate</span>
+                    <span id="ui-hashrate" class="text-xs md:text-sm font-bold font-mono">---</span>
                 </div>
-                <div class="p-2 px-4 flex items-center justify-between">
-                    <span class="text-[9px] text-zinc-500 font-black uppercase">Next Halving</span>
-                    <span id="ui-halving" class="text-sm font-bold font-mono text-red-500">---</span>
+                <div class="p-2 px-3 flex items-center justify-between">
+                    <span class="text-[8px] md:text-[9px] text-zinc-500 font-black uppercase">Halving</span>
+                    <span id="ui-halving" class="text-xs md:text-sm font-bold font-mono text-red-500">---</span>
                 </div>
-                <div class="p-2 px-4 flex items-center justify-between">
-                    <span class="text-[9px] text-zinc-500 font-black uppercase">Supply</span>
-                    <span id="ui-supply" class="text-sm font-bold font-mono">---</span>
+                <div class="p-2 px-3 flex items-center justify-between">
+                    <span class="text-[8px] md:text-[9px] text-zinc-500 font-black uppercase">Supply</span>
+                    <span id="ui-supply" class="text-xs md:text-sm font-bold font-mono">---</span>
                 </div>
             </div>
 
-            <!-- News height adjusted to 240px to fit 5+ headlines easily -->
-            <div class="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-zinc-800 h-[240px]">
+            <div class="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-zinc-800 min-h-[240px]">
                 <div class="lg:col-span-2 p-3 flex flex-col overflow-hidden">
                     <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-[10px] text-red-500 uppercase font-black tracking-widest">Cointelegraph Live Feed</h3>
-                        <span class="text-[9px] text-zinc-600 uppercase font-bold">Top Headlines</span>
+                        <h3 class="text-[9px] md:text-[10px] text-red-500 uppercase font-black tracking-widest">Cointelegraph Live Feed</h3>
+                        <span class="text-[8px] md:text-[9px] text-zinc-600 uppercase font-bold">Top Headlines</span>
                     </div>
                     <div id="news-feed" class="space-y-0.5 overflow-y-auto flex-1 pr-2">
                         <div class="text-zinc-700 animate-pulse text-[10px]">Syncing satellite feed...</div>
                     </div>
                 </div>
                 
-                <div class="p-3 bg-zinc-900/20 flex flex-col justify-between">
-                    <div>
+                <div class="p-3 bg-zinc-900/20 flex flex-col justify-between h-auto">
+                    <div class="mb-4 md:mb-0">
                         <div class="flex justify-between items-end mb-1">
                             <span class="text-[9px] text-zinc-500 uppercase font-bold">Difficulty</span>
-                            <span id="ui-diff" class="text-[11px] font-mono">---</span>
+                            <span id="ui-diff" class="text-[10px] md:text-[11px] font-mono">---</span>
                         </div>
                         <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
                             <div id="ui-diff-bar" class="bg-red-600 h-full w-0 transition-all duration-1000"></div>
                         </div>
                     </div>
                     
-                    <div class="mt-4 p-2 bg-red-600/5 border border-red-600/10 rounded">
-                        <p class="text-[9px] text-red-500 font-black uppercase mb-1">DCD Analyst Note</p>
+                    <div class="mt-2 md:mt-4 p-2 bg-red-600/5 border border-red-600/10 rounded">
+                        <p class="text-[8px] md:text-[9px] text-red-500 font-black uppercase mb-1">DCD Analyst Note</p>
                         <p id="ui-insight" class="text-[10px] text-zinc-400 italic leading-snug">Parsing chain state...</p>
                     </div>
 
-                    <div class="mt-auto pt-2 flex justify-between items-center border-t border-zinc-800/50">
+                    <div class="mt-4 md:mt-auto pt-2 flex justify-between items-center border-t border-zinc-800/50">
                         <span class="text-[8px] text-zinc-600 uppercase">Update Sync</span>
                         <span id="sync-clock" class="text-[8px] text-zinc-600 font-mono">--:--:--</span>
                     </div>
@@ -98,18 +97,18 @@
             </div>
         </section>
 
-        <div class="grid lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             <div class="space-y-4">
                 <section class="card p-4 rounded-xl">
                     <h2 class="text-lg font-bold mb-3 border-b border-zinc-700 pb-1 italic">The SR Mission</h2>
                     <div class="grid grid-cols-2 gap-3 text-xs text-gray-400">
                         <div>
-                            <strong class="text-white block uppercase text-[10px] mb-1">What is an SR?</strong>
-                            Super Representatives validate blocks. 27 are elected by the community to run the network.
+                            <strong class="text-white block uppercase text-[9px] md:text-[10px] mb-1">What is an SR?</strong>
+                            Super Representatives validate blocks. 27 are elected by the community.
                         </div>
                         <div>
-                            <strong class="text-white block uppercase text-[10px] mb-1">Why Vote?</strong>
-                            Help secure TRON and receive a portion of block rewards generated by your chosen SR.
+                            <strong class="text-white block uppercase text-[9px] md:text-[10px] mb-1">Why Vote?</strong>
+                            Help secure TRON and receive a portion of block rewards generated.
                         </div>
                     </div>
                 </section>
@@ -119,27 +118,27 @@
                     <div class="space-y-3">
                         <div class="flex gap-3">
                             <span class="bg-red-600 text-white w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">1</span>
-                            <p class="text-xs"><span class="text-white font-semibold">Freeze:</span> Use TronLink to freeze TRX for Energy/Bandwidth.</p>
+                            <p class="text-[11px] md:text-xs"><span class="text-white font-semibold">Freeze:</span> Use TronLink to freeze TRX for Power.</p>
                         </div>
                         <div class="flex gap-3">
                             <span class="bg-red-600 text-white w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">2</span>
-                            <p class="text-xs"><span class="text-white font-semibold">Vote:</span> Search for our SR address and cast votes.</p>
+                            <p class="text-[11px] md:text-xs"><span class="text-white font-semibold">Vote:</span> Search for our SR address and cast votes.</p>
                         </div>
                         <div class="flex gap-3">
                             <span class="bg-red-600 text-white w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">3</span>
-                            <p class="text-xs"><span class="text-white font-semibold">Collect:</span> We distribute <span class="text-red-500 font-bold">80%</span> of rewards automatically.</p>
+                            <p class="text-[11px] md:text-xs"><span class="text-white font-semibold">Collect:</span> 80% rewards distributed automatically.</p>
                         </div>
                     </div>
                 </section>
             </div>
 
             <div class="space-y-4">
-                <section class="card p-5 rounded-xl border-red-600/20 h-full flex flex-col justify-center">
+                <section class="card p-5 rounded-xl h-full flex flex-col justify-center">
                     <div class="flex items-center gap-4 mb-4">
-                        <div class="bg-zinc-800 p-4 rounded-lg border border-red-600 font-bold text-2xl text-red-500">DCD</div>
+                        <div class="bg-zinc-800 p-3 md:p-4 rounded-lg border border-red-600 font-bold text-xl md:text-2xl text-red-500 shrink-0">DCD</div>
                         <div>
-                            <h2 class="text-xl font-bold">The $DCD Token</h2>
-                            <p class="text-gray-400 text-xs italic">Contract: TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</p>
+                            <h2 class="text-lg md:text-xl font-bold">The $DCD Token</h2>
+                            <p class="text-gray-400 text-[10px] md:text-xs italic break-all">Contract: TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-2">
@@ -155,7 +154,7 @@
         </div>
     </main>
 
-    <footer class="mt-4 py-4 border-t border-zinc-900 text-center text-[10px] text-gray-600 uppercase tracking-widest">
+    <footer class="mt-4 py-4 border-t border-zinc-900 text-center text-[9px] md:text-[10px] text-gray-600 uppercase tracking-widest px-4">
         &copy; 2026 DigitalCurrencyDaily.com | Official SR Candidate
     </footer>
 
@@ -172,14 +171,14 @@
                 
                 document.getElementById('ui-price').innerText = `$${price.toLocaleString()}`;
                 document.getElementById('ui-change').innerText = `${change > 0 ? '▲' : '▼'} ${Math.abs(change).toFixed(2)}%`;
-                document.getElementById('ui-change').className = `text-[9px] font-bold ${change > 0 ? 'text-green-500' : 'text-red-500'}`;
+                document.getElementById('ui-change').className = `text-[8px] md:text-[9px] font-bold ${change > 0 ? 'text-green-500' : 'text-red-500'}`;
                 
                 document.getElementById('ui-hashrate').innerText = `${(n.hash_rate / 1000000).toFixed(1)} EH/s`;
                 document.getElementById('ui-supply').innerText = `${Math.floor(m.market_data.circulating_supply / 1000000).toFixed(2)}M`;
                 document.getElementById('ui-diff').innerText = `${(n.difficulty / 1e12).toFixed(1)}T`;
 
                 const blocksLeft = 1050000 - n.n_blocks_total;
-                document.getElementById('ui-halving').innerText = `${Math.floor((blocksLeft * 10) / 1440)} Days`;
+                document.getElementById('ui-halving').innerText = `${Math.floor((blocksLeft * 10) / 1440)}d`;
 
                 document.getElementById('ui-diff-bar').style.width = `${(n.n_blocks_total % 2016) / 2016 * 100}%`;
                 document.getElementById('ui-insight').innerText = change > 0 ? 
@@ -196,7 +195,6 @@
 
                 newsData.items.slice(0, 10).forEach(item => {
                     const div = document.createElement('div');
-                    // Adjusted padding and margin for 5+ visible headlines
                     div.className = "p-1.5 border-b border-zinc-800/40 hover:bg-zinc-800/30 transition-all cursor-pointer group flex items-start gap-2";
                     div.innerHTML = `
                         <div class="mt-1 w-1 h-1 bg-red-600 rounded-full shrink-0"></div>
