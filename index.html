@@ -10,7 +10,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; }
         .tron-gradient { background: linear-gradient(90deg, #ff0013 0%, #a00000 100%); }
-        /* Consistent red border line on each container */
         .card { background: #1a1a1a; border: 1px solid #ff0013; }
         h1, h2 { letter-spacing: -0.025em; }
         
@@ -62,36 +61,32 @@
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-zinc-800 min-h-[240px]">
-                <div class="lg:col-span-2 p-3 flex flex-col overflow-hidden">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-[9px] md:text-[10px] text-red-500 uppercase font-black tracking-widest">Cointelegraph Live Feed</h3>
-                        <span class="text-[8px] md:text-[9px] text-zinc-600 uppercase font-bold">Top Headlines</span>
-                    </div>
-                    <div id="news-feed" class="space-y-0.5 overflow-y-auto flex-1 pr-2">
-                        <div class="text-zinc-700 animate-pulse text-[10px]">Syncing satellite feed...</div>
-                    </div>
-                </div>
-                
-                <div class="p-3 bg-zinc-900/20 flex flex-col justify-between h-auto">
-                    <div class="mb-4 md:mb-0">
+            <div class="flex flex-col min-h-[300px]">
+                <div class="p-3 bg-zinc-900/20 grid md:grid-cols-2 gap-4 items-center">
+                    <div>
                         <div class="flex justify-between items-end mb-1">
-                            <span class="text-[9px] text-zinc-500 uppercase font-bold">Difficulty</span>
+                            <span class="text-[9px] text-zinc-500 uppercase font-bold">Difficulty Adjustment</span>
                             <span id="ui-diff" class="text-[10px] md:text-[11px] font-mono">---</span>
                         </div>
                         <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
                             <div id="ui-diff-bar" class="bg-red-600 h-full w-0 transition-all duration-1000"></div>
                         </div>
                     </div>
-                    
-                    <div class="mt-2 md:mt-4 p-2 bg-red-600/5 border border-red-600/10 rounded">
-                        <p class="text-[8px] md:text-[9px] text-red-500 font-black uppercase mb-1">DCD Analyst Note</p>
-                        <p id="ui-insight" class="text-[10px] text-zinc-400 italic leading-snug">Parsing chain state...</p>
+                    <div class="p-2 bg-red-600/5 border border-red-600/10 rounded">
+                        <p class="text-[8px] md:text-[9px] text-red-500 font-black uppercase mb-0.5">DCD Analyst Note</p>
+                        <p id="ui-insight" class="text-[10px] text-zinc-400 italic leading-tight">Parsing chain state...</p>
                     </div>
+                </div>
 
-                    <div class="mt-4 md:mt-auto pt-2 flex justify-between items-center border-t border-zinc-800/50">
-                        <span class="text-[8px] text-zinc-600 uppercase">Update Sync</span>
+                <div class="border-b border-zinc-800"></div>
+
+                <div class="p-3 flex flex-col overflow-hidden flex-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-[9px] md:text-[10px] text-red-500 uppercase font-black tracking-widest">Cointelegraph Live Feed</h3>
                         <span id="sync-clock" class="text-[8px] text-zinc-600 font-mono">--:--:--</span>
+                    </div>
+                    <div id="news-feed" class="space-y-0.5 overflow-y-auto max-h-[180px] pr-2">
+                        <div class="text-zinc-700 animate-pulse text-[10px]">Syncing satellite feed...</div>
                     </div>
                 </div>
             </div>
@@ -182,8 +177,8 @@
 
                 document.getElementById('ui-diff-bar').style.width = `${(n.n_blocks_total % 2016) / 2016 * 100}%`;
                 document.getElementById('ui-insight').innerText = change > 0 ? 
-                    "Positive price action aligns with rising network difficulty." : 
-                    "Market consolidation phase. Low volatility expected in near-term.";
+                    "Market strength confirmed. On-chain volume supports current levels." : 
+                    "Consolidation phase. Network hashrate remains near all-time highs.";
                 document.getElementById('sync-clock').innerText = new Date().toLocaleTimeString();
 
                 const rssUrl = encodeURIComponent('https://cointelegraph.com/rss/tag/bitcoin');
