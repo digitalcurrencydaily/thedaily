@@ -184,6 +184,29 @@
     <script>
         const CONTRACT_ADDRESS = "TYxAVQVMZBWpazZgody22zyXUXresd89Ba";
 
+        // Explicit ABI declaration ensuring correct mapping for getRecentMessages and postMessage
+        const CONTRACT_ABI = [
+            {
+                "inputs": [],
+                "name": "getRecentMessages",
+                "outputs": [
+                    { "internalType": "address[]", "name": "uploaders", "type": "address[]" },
+                    { "internalType": "string[]", "name": "contents", "type": "string[]" }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    { "internalType": "string", "name": "_content", "type": "string" }
+                ],
+                "name": "postMessage",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            }
+        ];
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -224,19 +247,18 @@
                 }
                 feed.innerHTML = '<div class="text-zinc-500 animate-pulse text-center py-6">Loading messages from Nile contract...</div>';
                 
-                const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
+                // Instantiate contract explicitly using the provided ABI mapping
+                const contract = window.tronWeb.contract(CONTRACT_ABI, CONTRACT_ADDRESS);
                 
-                if (contract.GetRecentMessages) {
-                    // Call GetRecentMessages contract function
-                    const result = await contract.GetRecentMessages().call();
+                if (contract.getRecentMessages) {
+                    const result = await contract.getRecentMessages().call();
                     
                     feed.innerHTML = '';
                     
-                    // Solidity multiple-return or array struct handling:
-                    // Usually returned as [uploadersArray, contentsArray] or an object wrapper depending on ABI configuration
                     let uploaders = [];
                     let contents = [];
 
+                    // Handle different structural formats returned by TronWeb contract calls (Array vs Object output)
                     if (Array.isArray(result)) {
                         uploaders = result[0];
                         contents = result[1];
@@ -246,18 +268,15 @@
                     }
 
                     if (contents && contents.length > 0) {
-                        // Loop through messages (handling standard reverse chronological order if desired)
                         for (let i = contents.length - 1; i >= 0; i--) {
-                            const rawUploader = uploaders[i];
-                            const contentText = contents[i];
+                            let rawUploader = uploaders[i];
+                            let contentText = contents[i];
                             
-                            // Convert hex address format to base58 standard if needed via TronWeb
                             let uploaderAddress = rawUploader;
                             if (rawUploader && rawUploader.startsWith('41') && rawUploader.length === 42) {
                                 try {
                                     uploaderAddress = window.tronWeb.address.fromHex(rawUploader);
                                 } catch (err) {
-                                    // fallback if conversion errors out
                                     uploaderAddress = rawUploader;
                                 }
                             }
@@ -278,7 +297,7 @@
                         feed.innerHTML = '<div class="text-zinc-500 text-center py-6">No messages found on-chain.</div>';
                     }
                 } else {
-                    feed.innerHTML = '<div class="text-red-400 text-center py-6">Function GetRecentMessages not found on contract ABI.</div>';
+                    feed.innerHTML = '<div class="text-red-400 text-center py-6">Function getRecentMessages not found on contract.</div>';
                 }
             } catch (error) {
                 console.error("Error fetching messages:", error);
@@ -298,7 +317,7 @@
             }
 
             try {
-                const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
+                const contract = window.tronWeb.contract(CONTRACT_ABI, CONTRACT_ADDRESS);
                 
                 // Explicitly defining 5 TRX in sun (5,000,000 sun) to pass via callValue for the burning mechanism
                 const burnFeeInSun = window.tronWeb.toSun(5);
