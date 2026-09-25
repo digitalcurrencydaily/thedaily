@@ -16,6 +16,14 @@
         #news-feed::-webkit-scrollbar { width: 3px; }
         #news-feed::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         #news-feed::-webkit-scrollbar-thumb:hover { background: #0BDA51; }
+
+        .tab-btn.active {
+            background-color: #0BDA51;
+            color: #000000;
+            border-color: #0BDA51;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
 <body class="leading-snug text-sm">
@@ -53,34 +61,48 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             <div class="space-y-4">
-                <section class="card p-4 rounded-xl">
-                    <h2 class="text-lg font-bold mb-3 border-b border-zinc-700 pb-1 italic">The SR Mission</h2>
-                    <div class="grid grid-cols-2 gap-3 text-xs text-gray-400">
-                        <div>
-                            <strong class="text-white block uppercase text-[9px] md:text-[10px] mb-1">What is an SR?</strong>
-                            Super Representatives validate blocks. 27 are elected by the community.
+                <!-- Combined SR Mission & Voting Information Card with Tab Navigation -->
+                <section class="card p-4 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <!-- Column Tabs -->
+                        <div class="flex border-b border-zinc-700 mb-3 gap-1 overflow-x-auto pb-1">
+                            <button onclick="switchTab('sr-overview')" id="btn-sr-overview" class="tab-btn active text-[10px] md:text-xs font-bold uppercase py-1.5 px-3 rounded border border-zinc-700 bg-zinc-900 text-gray-400 transition-all shrink-0">SR Candidate</button>
+                            <button onclick="switchTab('sr-role')" id="btn-sr-role" class="tab-btn text-[10px] md:text-xs font-bold uppercase py-1.5 px-3 rounded border border-zinc-700 bg-zinc-900 text-gray-400 transition-all shrink-0">The Role</button>
+                            <button onclick="switchTab('steps-earn')" id="btn-steps-earn" class="tab-btn text-[10px] md:text-xs font-bold uppercase py-1.5 px-3 rounded border border-zinc-700 bg-zinc-900 text-gray-400 transition-all shrink-0">Stake & Vote</button>
                         </div>
-                        <div>
-                            <strong class="text-white block uppercase text-[9px] md:text-[10px] mb-1">Why Vote?</strong>
-                            Help secure TRON and receive a portion of block rewards generated.
-                        </div>
-                    </div>
-                </section>
 
-                <section class="card p-4 rounded-xl bg-zinc-900/50">
-                    <h2 class="text-lg font-bold mb-3 border-b border-zinc-700 pb-1">3 Steps to Earn TRX</h2>
-                    <div class="space-y-3">
-                        <div class="flex gap-3">
-                            <span style="background-color: #0BDA51;" class="text-black w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">1</span>
-                            <p class="text-[11px] md:text-xs"><span class="text-white font-semibold">Freeze:</span> Use TronLink to freeze TRX for Power.</p>
+                        <!-- Tab Content: SR Overview -->
+                        <div id="tab-sr-overview" class="tab-content active text-xs text-gray-300 space-y-2">
+                            <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">What is a TRON SR Candidate?</h2>
+                            <p class="leading-relaxed text-[11px] md:text-xs text-gray-300">
+                                A TRON Super Representative (SR) Candidate is any account holder on the TRON network who applies to participate in governance. While anyone can apply, only the top 27 most-voted candidates become official Super Representatives responsible for producing blocks and securing the network. The next 100 runner-ups are designated as Super Representative Partners.
+                            </p>
                         </div>
-                        <div class="flex gap-3">
-                            <span style="background-color: #0BDA51;" class="text-black w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">2</span>
-                            <p class="text-[11px] md:text-xs"><span class="text-white font-semibold">Vote:</span> Search for our SR address and cast votes.</p>
+
+                        <!-- Tab Content: The Role -->
+                        <div id="tab-sr-role" class="tab-content text-xs text-gray-300 space-y-2">
+                            <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">The Role They Play</h2>
+                            <p class="text-[11px] md:text-gray-400">Super Representatives form the backbone of TRON’s DPoS consensus mechanism:</p>
+                            <ul class="space-y-1 text-[11px] md:text-xs list-disc pl-4 text-gray-300">
+                                <li><strong class="text-white">Validating Transactions:</strong> Processing and packing transactions into new blocks.</li>
+                                <li><strong class="text-white">Network Governance:</strong> Voting on parameters, upgrades, and fees.</li>
+                                <li><strong class="text-white">Securing Blockchain:</strong> Maintaining 24/7 node uptime to keep the network decentralized.</li>
+                                <li><strong class="text-white">Distributing Rewards:</strong> Sharing block rewards back with voting community members.</li>
+                            </ul>
                         </div>
-                        <div class="flex gap-3">
-                            <span style="background-color: #0BDA51;" class="text-black w-4 h-4 rounded flex items-center justify-center shrink-0 text-[10px] font-bold">3</span>
-                            <p class="text-[11px] md:text-xs"><span class="text-white font-semibold">Collect:</span> 80% rewards distributed automatically.</p>
+
+                        <!-- Tab Content: Steps to Earn -->
+                        <div id="tab-steps-earn" class="tab-content text-xs text-gray-300 space-y-2">
+                            <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">How to Stake & Vote</h2>
+                            <div class="bg-zinc-900 p-2 rounded text-[10px] md:text-[11px] font-mono text-center text-[#0BDA51] mb-2 border border-zinc-800 overflow-x-auto">
+                                [Stake TRX] ➔ [Get Power] ➔ [Vote] ➔ [Earn Rewards]
+                            </div>
+                            <div class="space-y-1.5 text-[11px] md:text-xs max-h-[160px] overflow-y-auto pr-1">
+                                <p><strong class="text-white">Step 1: Stake (Freeze):</strong> Lock your TRX using a wallet like TronLink to earn Energy or Bandwidth alongside voting power.</p>
+                                <p><strong class="text-white">Step 2: Receive TP:</strong> 1 staked TRX = 1 TRON Power (TP), giving you equivalent voting weight.</p>
+                                <p><strong class="text-white">Step 3: Cast Votes:</strong> Navigate to the Vote section, find our SR address, and allocate your TRON Power.</p>
+                                <p><strong class="text-white">Step 4: Claim Rewards:</strong> SRs automatically distribute shares. Manually claim accumulated rewards via your wallet anytime.</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -89,7 +111,9 @@
             <div class="space-y-4">
                 <section class="card p-5 rounded-xl h-full flex flex-col justify-center">
                     <div class="flex items-center gap-4 mb-4">
-                        <div style="border-color: #0BDA51; color: #0BDA51;" class="bg-zinc-800 p-3 md:p-4 rounded-lg border font-bold text-xl md:text-2xl shrink-0">DCD</div>
+                        <div style="border-color: #0BDA51;" class="bg-zinc-800 p-2 md:p-3 rounded-lg border shrink-0 flex items-center justify-center w-14 h-14 md:w-16 md:h-16">
+                            <img src="dcd.png" alt="DCD Token Logo" class="w-full h-full object-contain rounded">
+                        </div>
                         <div>
                             <h2 class="text-lg md:text-xl font-bold">The $DCD Token</h2>
                             <p class="text-gray-400 text-[10px] md:text-xs italic break-all">Contract: TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</p>
@@ -113,6 +137,14 @@
     </footer>
 
     <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
         async function fetchNewsData() {
             try {
                 document.getElementById('sync-clock').innerText = new Date().toLocaleTimeString();
