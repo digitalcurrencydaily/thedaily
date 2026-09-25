@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalCurrencyDaily | TRON SR & BTC Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; }
+        .tron-gradient { background: linear-gradient(90deg, #0BDA51 0%, #099f3c 100%); }
+        .card { background: #1a1a1a; border: 1px solid #0BDA51; }
+        h1, h2 { letter-spacing: -0.025em; }
+        
+        #news-feed::-webkit-scrollbar, #message-board-feed::-webkit-scrollbar { width: 3px; }
+        #news-feed::-webkit-scrollbar-thumb, #message-board-feed::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        #news-feed::-webkit-scrollbar-thumb:hover, #message-board-feed::-webkit-scrollbar-thumb:hover { background: #0BDA51; }
+
+        .tab-btn.active {
+            background-color: #0BDA51;
+            color: #000000;
+            border-color: #0BDA51;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body class="leading-snug text-sm">
+
+    <nav class="py-3 px-4 md:px-6 flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto border-b border-zinc-800 gap-4">
+        <div class="text-lg md:text-xl font-bold text-center">
+            DigitalCurrencyDaily
+        </div>
+        <div class="space-x-4 flex items-center justify-center">
+            <a href="https://x.com/digitalcurdaily" target="_blank" class="text-xl hover:text-[#0BDA51] transition"><i class="fab fa-x-twitter"></i></a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 md:px-6 py-4">
+        <header class="text-center mb-6">
+            <h1 class="text-2xl md:text-4xl font-extrabold mb-3 px-2">Power TRON. <span style="color: #0BDA51;">Earn Rewards.</span></h1>
+            <div style="background-color: rgba(11, 218, 81, 0.1); border-color: rgba(11, 218, 81, 0.4);" class="border p-2 px-4 rounded inline-block max-w-full">
+                <p style="color: #0BDA51;" class="text-[9px] md:text-[10px] font-mono uppercase tracking-tighter break-all">SR: TWKFjPakHP54EAXTMifbKA77RT3g8cyZoQ</p>
+            </div>
+        </header>
+
+        <section class="card rounded-lg overflow-hidden mb-4 shadow-2xl mx-auto w-full">
+            <div class="flex flex-col">
+                <div class="p-3 flex flex-col overflow-hidden flex-1 min-h-[250px]">
+                    <div class="flex justify-between items-center mb-2 border-b border-zinc-800 pb-2">
+                        <h3 style="color: #0BDA51;" class="text-[9px] md:text-[10px] uppercase font-black tracking-widest">Cointelegraph Live Feed</h3>
+                        <span id="sync-clock" class="text-[8px] text-zinc-600 font-mono">--:--:--</span>
+                    </div>
+                    <div id="news-feed" class="space-y-0.5 overflow-y-auto max-h-[300px] pr-2">
+                        <div class="text-zinc-700 animate-pulse text-[10px]">Syncing satellite feed...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <div class="space-y-4">
+                <!-- Combined SR Mission & Voting Information Card with Tab Navigation -->
+                <section class="card p-4 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <!-- Column Tabs -->
+                        <div class="flex border-b border-zinc-700 mb-3 gap-1 overflow-x-auto pb-1">
+                            <button onclick="switchTab('sr-overview')" id="btn-sr-overview" class="tab-btn active text-[10px] md:text-xs font-bold uppercase py-1.5 px-3 rounded border border-zinc-700 bg-zinc-900 text-gray-400 transition-all shrink-0">SR Candidate</button>
+                            <button onclick="switchTab('sr-role')" id="btn-sr-role" class="tab-btn text-[10px] md:text-xs font-bold uppercase py-1.5 px-3 rounded border border-zinc-700 bg-zinc-900 text-gray-400 transition-all shrink-0">The Role</button>
+                            <button onclick="switchTab('steps-earn')" id="btn-steps-earn" class="tab-btn text-[10px] md:text-xs font-bold uppercase py-1.5 px-3 rounded border border-zinc-700 bg-zinc-900 text-gray-400 transition-all shrink-0">Stake & Vote</button>
+                        </div>
+
+                        <!-- Tab Content: SR Overview -->
+                        <div id="tab-sr-overview" class="tab-content active text-xs text-gray-300 space-y-2">
+                            <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">What is a TRON SR Candidate?</h2>
+                            <p class="leading-relaxed text-[11px] md:text-xs text-gray-300">
+                                A TRON Super Representative (SR) Candidate is any account holder on the TRON network who applies to participate in governance. While anyone can apply, only the top 27 most-voted candidates become official Super Representatives responsible for producing blocks and securing the network. The next 100 runner-ups are designated as Super Representative Partners.
+                            </p>
+                        </div>
+
+                        <!-- Tab Content: The Role -->
+                        <div id="tab-sr-role" class="tab-content text-xs text-gray-300 space-y-2">
+                            <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">The Role They Play</h2>
+                            <p class="text-[11px] md:text-gray-400">Super Representatives form the backbone of TRON’s DPoS consensus mechanism:</p>
+                            <ul class="space-y-1 text-[11px] md:text-xs list-disc pl-4 text-gray-300">
+                                <li><strong class="text-white">Validating Transactions:</strong> Processing and packing transactions into new blocks.</li>
+                                <li><strong class="text-white">Network Governance:</strong> Voting on parameters, upgrades, and fees.</li>
+                                <li><strong class="text-white">Securing Blockchain:</strong> Maintaining 24/7 node uptime to keep the network decentralized.</li>
+                                <li><strong class="text-white">Distributing Rewards:</strong> Sharing block rewards back with voting community members.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Tab Content: Steps to Earn -->
+                        <div id="tab-steps-earn" class="tab-content text-xs text-gray-300 space-y-2">
+                            <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">How to Stake & Vote</h2>
+                            <div class="bg-zinc-900 p-2 rounded text-[10px] md:text-[11px] font-mono text-center text-[#0BDA51] mb-2 border border-zinc-800 overflow-x-auto">
+                                [Stake TRX] ➔ [Get Power] ➔ [Vote] ➔ [Earn Rewards]
+                            </div>
+                            <div class="space-y-1.5 text-[11px] md:text-xs max-h-[160px] overflow-y-auto pr-1">
+                                <p><strong class="text-white">Step 1: Stake (Freeze):</strong> Lock your TRX using a wallet like TronLink to earn Energy or Bandwidth alongside voting power.</p>
+                                <p><strong class="text-white">Step 2: Receive TP:</strong> 1 staked TRX = 1 TRON Power (TP), giving you equivalent voting weight.</p>
+                                <p><strong class="text-white">Step 3: Cast Votes:</strong> Navigate to the Vote section, find our SR address, and allocate your TRON Power.</p>
+                                <p><strong class="text-white">Step 4: Claim Rewards:</strong> SRs automatically distribute shares. Manually claim accumulated rewards via your wallet anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="space-y-4">
+                <section class="card p-5 rounded-xl h-full flex flex-col justify-center">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div style="border-color: #0BDA51;" class="bg-zinc-800 p-1 rounded-lg border shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 overflow-hidden">
+                            <img src="dcd.png" alt="DCD Token Logo" class="w-full h-full object-cover rounded">
+                        </div>
+                        <div>
+                            <h2 class="text-lg md:text-xl font-bold">The $DCD Token</h2>
+                            <p class="text-gray-400 text-[10px] md:text-xs italic break-all">Contract: TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <a href="https://sunswap.com/#/v1?tokenAddress=TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv&type=swap" target="_blank" class="tron-gradient text-center py-2 px-4 rounded font-bold text-xs uppercase tracking-wider flex-1 text-black">
+                            Trade on SunSwap
+                        </a>
+                        <a href="https://tronscan.org/#/token20/TNp9BX9NMjsmWPZugw13VisP1oVJT2pMDv" target="_blank" class="bg-zinc-800 text-center py-2 px-4 rounded font-bold text-xs uppercase border border-zinc-700 flex-1">
+                            Token Details
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- DCD Messageboard Section -->
+        <section class="card p-4 md:p-5 rounded-xl mt-4 w-full">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 border-b border-zinc-800 pb-3 gap-3">
+                <div class="flex items-center gap-2">
+                    <h2 class="text-base md:text-lg font-bold">DCD Messageboard</h2>
+                    <div class="relative tooltip-container cursor-pointer inline-flex items-center">
+                        <i class="fas fa-info-circle text-[#0BDA51] text-sm"></i>
+                        <div class="tooltip-text invisible opacity-0 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 bg-zinc-900 border border-[#0BDA51] text-[10px] text-zinc-300 p-2 rounded shadow-lg z-10 text-center pointer-events-none">
+                            You must hold 50 TRX to access message board. You will burn 5 TRX to post in the message board.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button id="connect-wallet-btn" onclick="connectTronLink()" class="tron-gradient text-black text-xs font-bold uppercase py-2 px-4 rounded transition hover:opacity-90">
+                        Connect TronLink (Nile)
+                    </button>
+                    <span id="wallet-address" class="text-[10px] font-mono text-zinc-400 hidden"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Feed Column -->
+                <div class="md:col-span-2 bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 flex flex-col justify-between">
+                    <div id="message-board-feed" class="space-y-2 overflow-y-auto max-h-[220px] pr-2 text-xs">
+                        <div class="text-zinc-600 text-center py-6">Connect wallet & load messages to view board.</div>
+                    </div>
+                    <button onclick="fetchMessages()" class="mt-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-[10px] uppercase font-bold py-1.5 px-3 rounded border border-zinc-700 transition">
+                        Refresh Messages
+                    </button>
+                </div>
+
+                <!-- Input Column -->
+                <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 flex flex-col justify-between space-y-3">
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold text-zinc-400 mb-1">Post a Message (Costs 5 TRX)</label>
+                        <textarea id="message-input" rows="3" placeholder="Type your message here..." class="w-full bg-black border border-zinc-700 rounded p-2 text-xs text-white focus:outline-none focus:border-[#0BDA51] resize-none"></textarea>
+                    </div>
+                    <button onclick="postMessage()" class="w-full tron-gradient text-black font-bold text-xs uppercase py-2 px-4 rounded transition hover:opacity-90">
+                        Send Message
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-4 py-4 border-t border-zinc-900 text-center text-[9px] md:text-[10px] text-gray-600 uppercase tracking-widest px-4">
+        &copy; 2026 DigitalCurrencyDaily.com | Official SR Candidate
+    </footer>
+
+    <script>
+        const CONTRACT_ADDRESS = "TSPx5Rg9VaT7AjCyVQTzeJJSxgwonXWTEH";
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        async function connectTronLink() {
+            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                const address = window.tronWeb.defaultAddress.base58;
+                document.getElementById('connect-wallet-btn').classList.add('hidden');
+                const addrSpan = document.getElementById('wallet-address');
+                addrSpan.innerText = address.substring(0, 6) + '...' + address.substring(address.length - 4);
+                addrSpan.classList.remove('hidden');
+                fetchMessages();
+            } else {
+                alert("Please ensure TronLink is installed and unlocked, and switched to Nile Testnet.");
+                try {
+                    if (window.tronLink) {
+                        await window.tronLink.request({ method: 'tron_requestAccounts' });
+                        if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                            connectTronLink();
+                        }
+                    }
+                } catch (e) {
+                    console.error("Wallet connection failed", e);
+                }
+            }
+        }
+
+        async function fetchMessages() {
+            const feed = document.getElementById('message-board-feed');
+            try {
+                if (!window.tronWeb || !window.tronWeb.defaultAddress.base58) {
+                    feed.innerHTML = '<div class="text-zinc-500 text-center py-6">Please connect your wallet first.</div>';
+                    return;
+                }
+                feed.innerHTML = '<div class="text-zinc-500 animate-pulse text-center py-6">Loading messages from Nile contract...</div>';
+                
+                const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
+                // Assuming standard view method name like getMessages or getAllMessages. Update function name if custom ABI mapping differs.
+                if (contract.getMessages) {
+                    const messages = await contract.getMessages().call();
+                    feed.innerHTML = '';
+                    if (messages && messages.length > 0) {
+                        messages.reverse().forEach(msg => {
+                            const div = document.createElement('div');
+                            div.className = "p-2 bg-black border border-zinc-800 rounded";
+                            div.innerHTML = `<p class="text-[11px] text-zinc-200">${escapeHtml(msg.text || msg)}</p>`;
+                            feed.appendChild(div);
+                        });
+                    } else {
+                        feed.innerHTML = '<div class="text-zinc-500 text-center py-6">No messages found on-chain.</div>';
+                    }
+                } else {
+                    feed.innerHTML = '<div class="text-zinc-500 text-center py-6">Contract connected successfully. Ready for messaging operations.</div>';
+                }
+            } catch (error) {
+                console.error("Error fetching messages:", error);
+                feed.innerHTML = '<div class="text-red-400 text-center py-6">Could not fetch messages from contract. Verify Nile testnet selection.</div>';
+            }
+        }
+
+        async function postMessage() {
+            const text = document.getElementById('message-input').value.trim();
+            if (!text) {
+                alert("Please enter a message.");
+                return;
+            }
+            if (!window.tronWeb || !window.tronWeb.defaultAddress.base58) {
+                alert("Please connect your TronLink wallet first.");
+                return;
+            }
+
+            try {
+                const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
+                // 5 TRX burn value converted to Sun (1 TRX = 1,000,000 Sun)
+                const burnFee = window.tronWeb.toSun(5);
+                
+                // Assuming contract method name is postMessage or sendMessage, passing text and sending required fee value if payable
+                if (contract.postMessage) {
+                    await contract.postMessage(text).send({
+                        callValue: burnFee,
+                        feeLimit: 100000000
+                    });
+                    alert("Message posted successfully!");
+                    document.getElementById('message-input').value = '';
+                    fetchMessages();
+                } else {
+                    alert("Contract method not found. Please verify contract ABI bindings.");
+                }
+            } catch (error) {
+                console.error("Error posting message:", error);
+                alert("Transaction failed or cancelled. Ensure you meet requirements (hold 50 TRX, attach 5 TRX fee).");
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        async function fetchNewsData() {
+            try {
+                document.getElementById('sync-clock').innerText = new Date().toLocaleTimeString();
+
+                const rssUrl = encodeURIComponent('https://cointelegraph.com/rss/tag/bitcoin');
+                const newsRes = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+                const newsData = await newsRes.json();
+                
+                const feed = document.getElementById('news-feed');
+                feed.innerHTML = ''; 
+
+                newsData.items.slice(0, 15).forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "p-2 border-b border-zinc-800/40 hover:bg-zinc-800/30 transition-all cursor-pointer group flex items-start gap-2";
+                    div.innerHTML = `
+                        <div style="background-color: #0BDA51;" class="mt-1 w-1 h-1 rounded-full shrink-0"></div>
+                        <p class="text-[10px] md:text-xs font-medium text-zinc-400 group-hover:text-[#0BDA51] leading-tight">${item.title}</p>
+                    `;
+                    div.onclick = () => window.open(item.link, '_blank');
+                    feed.appendChild(div);
+                });
+
+            } catch (error) { console.error("Sync Error", error); }
+        }
+
+        fetchNewsData();
+        setInterval(fetchNewsData, 300000);
+    </script>
+</body>
+</html>
