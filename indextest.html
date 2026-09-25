@@ -166,7 +166,7 @@
                 <!-- Input Column -->
                 <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 flex flex-col justify-between space-y-3">
                     <div>
-                        <label class="block text-[10px] uppercase font-bold text-zinc-400 mb-1">Post a Message (Costs 5 TRX)</label>
+                        <label class="block text-[10px] uppercase font-bold text-zinc-400 mb-1">Post a Message (Burns 5 TRX)</label>
                         <textarea id="message-input" rows="3" placeholder="Type your message here..." class="w-full bg-black border border-zinc-700 rounded p-2 text-xs text-white focus:outline-none focus:border-[#0BDA51] resize-none"></textarea>
                     </div>
                     <button onclick="postMessage()" class="w-full tron-gradient text-black font-bold text-xs uppercase py-2 px-4 rounded transition hover:opacity-90">
@@ -225,7 +225,6 @@
                 feed.innerHTML = '<div class="text-zinc-500 animate-pulse text-center py-6">Loading messages from Nile contract...</div>';
                 
                 const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
-                // Assuming standard view method name like getMessages or getAllMessages. Update function name if custom ABI mapping differs.
                 if (contract.getMessages) {
                     const messages = await contract.getMessages().call();
                     feed.innerHTML = '';
@@ -261,20 +260,22 @@
 
             try {
                 const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
-                // 5 TRX burn value converted to Sun (1 TRX = 1,000,000 Sun)
-                const burnFee = window.tronWeb.toSun(5);
                 
-                // Assuming contract method name is postMessage or sendMessage, passing text and sending required fee value if payable
+                // Explicitly defining 5 TRX in sun (5,000,000 sun) to pass via callValue
+                const burnFeeInSun = window.tronWeb.toSun(5);
+                
                 if (contract.postMessage) {
+                    // Trigger contract method while passing the 5 TRX callValue to fulfill the burn fee requirement
                     await contract.postMessage(text).send({
-                        callValue: burnFee,
+                        callValue: burnFeeInSun,
                         feeLimit: 100000000
                     });
+                    
                     alert("Message posted successfully!");
                     document.getElementById('message-input').value = '';
                     fetchMessages();
                 } else {
-                    alert("Contract method not found. Please verify contract ABI bindings.");
+                    alert("Contract method 'postMessage' not found. Please verify contract ABI bindings.");
                 }
             } catch (error) {
                 console.error("Error posting message:", error);
