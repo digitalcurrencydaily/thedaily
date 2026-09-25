@@ -135,14 +135,19 @@
         <!-- DCD Messageboard Section -->
         <section class="card p-4 md:p-5 rounded-xl mt-4 w-full">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 border-b border-zinc-800 pb-3 gap-3">
-                <div class="flex items-center gap-2">
-                    <h2 class="text-base md:text-lg font-bold">DCD Messageboard</h2>
-                    <div class="relative tooltip-container cursor-pointer inline-flex items-center">
-                        <i class="fas fa-info-circle text-[#0BDA51] text-sm"></i>
-                        <div class="tooltip-text invisible opacity-0 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 bg-zinc-900 border border-[#0BDA51] text-[10px] text-zinc-300 p-2 rounded shadow-lg z-10 text-center pointer-events-none">
-                            You must hold 50 TRX to access message board. You will burn 5 TRX to post in the message board.
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h2 class="text-base md:text-lg font-bold">DCD Messageboard</h2>
+                        <div class="relative tooltip-container cursor-pointer inline-flex items-center">
+                            <i class="fas fa-info-circle text-[#0BDA51] text-sm"></i>
+                            <div class="tooltip-text invisible opacity-0 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 bg-zinc-900 border border-[#0BDA51] text-[10px] text-zinc-300 p-2 rounded shadow-lg z-10 text-center pointer-events-none">
+                                You must hold 50 TRX to access message board. You will burn 5 TRX to post in the message board.
+                            </div>
                         </div>
                     </div>
+                    <p class="text-[10px] md:text-xs font-mono text-gray-400 mt-1 break-all">
+                        messageboard smart contract address : <span class="text-[#0BDA51]">TYxAVQVMZBWpazZgody22zyXUXresd89Ba</span>
+                    </p>
                 </div>
                 <div>
                     <button id="connect-wallet-btn" onclick="connectTronLink()" class="tron-gradient text-black text-xs font-bold uppercase py-2 px-4 rounded transition hover:opacity-90">
@@ -184,7 +189,6 @@
     <script>
         const CONTRACT_ADDRESS = "TYxAVQVMZBWpazZgody22zyXUXresd89Ba";
 
-        // Explicit ABI declaration ensuring correct mapping for getRecentMessages and postMessage
         const CONTRACT_ABI = [
             {
                 "inputs": [],
@@ -247,7 +251,6 @@
                 }
                 feed.innerHTML = '<div class="text-zinc-500 animate-pulse text-center py-6">Loading messages from Nile contract...</div>';
                 
-                // Instantiate contract explicitly using the provided ABI mapping
                 const contract = window.tronWeb.contract(CONTRACT_ABI, CONTRACT_ADDRESS);
                 
                 if (contract.getRecentMessages) {
@@ -258,7 +261,6 @@
                     let uploaders = [];
                     let contents = [];
 
-                    // Handle different structural formats returned by TronWeb contract calls (Array vs Object output)
                     if (Array.isArray(result)) {
                         uploaders = result[0];
                         contents = result[1];
@@ -318,8 +320,6 @@
 
             try {
                 const contract = window.tronWeb.contract(CONTRACT_ABI, CONTRACT_ADDRESS);
-                
-                // Explicitly defining 5 TRX in sun (5,000,000 sun) to pass via callValue for the burning mechanism
                 const burnFeeInSun = window.tronWeb.toSun(5);
                 
                 if (contract.postMessage) {
