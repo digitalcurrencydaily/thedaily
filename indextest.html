@@ -182,7 +182,7 @@
     </footer>
 
     <script>
-        const CONTRACT_ADDRESS = "TSPx5Rg9VaT7AjCyVQTzeJJSxgwonXWTEH";
+        const CONTRACT_ADDRESS = "TYxAVQVMZBWpazZgody22zyXUXresd89Ba";
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -261,11 +261,10 @@
             try {
                 const contract = await window.tronWeb.contract().at(CONTRACT_ADDRESS);
                 
-                // Explicitly defining 5 TRX in sun (5,000,000 sun) to pass via callValue
+                // Explicitly defining 5 TRX in sun (5,000,000 sun) to pass via callValue for the burning mechanism
                 const burnFeeInSun = window.tronWeb.toSun(5);
                 
                 if (contract.postMessage) {
-                    // Trigger contract method while passing the 5 TRX callValue to fulfill the burn fee requirement
                     await contract.postMessage(text).send({
                         callValue: burnFeeInSun,
                         feeLimit: 100000000
